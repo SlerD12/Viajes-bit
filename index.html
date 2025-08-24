@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color"content="#007bff">
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Registro de Viajes</title>
@@ -337,6 +339,14 @@
     resumen();renderTabla();
   }
   </script>
+
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js")
+      .then(() => console.log("✅ Service Worker registrado"))
+      .catch(err => console.log("❌ Error al registrar Service Worker:", err));
+  }
+</script>
 
 </body>
 </html>
