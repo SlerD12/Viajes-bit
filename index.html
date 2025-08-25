@@ -3,79 +3,67 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Registro de Viajes</title>
+  <title>Viajes</title>
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#007bff">
   <style>
     body{font-family:Arial,sans-serif;padding:10px;margin:0;background:#000;color:#fff;user-select:none}
-    label,select,input,button{margin:5px 0;width:100%;box-sizing:border-box;font-size:16px}
-    button{padding:10px;cursor:pointer;font-weight:bold;border-radius:5px;border:2px solid #fff;background-color:#007bff;color:#fff;transition:background-color .3s ease}
-    button:hover{background-color:#0056b3}
-    table{border-collapse:collapse;width:100%;background:#111;margin-top:15px;color:#fff}
-    th,td{border:2px solid #fff;padding:8px;text-align:center}
-    th{background:#222;}
-
-    .btn-principal{background:green;color:#fff;font-weight:bold }
-    .btn-finalizarmes{background:#D91000;color:#fff}
-
+    label,select,input{margin:1px 0;width:100%;box-sizing:border-box;font-size:16px}
+    table{border-collapse:collapse;width:100%;background:#111;margin-top:5px;color:#fff}
+    th{background:#222;border:2px solid #fff;padding:8px;text-align:center;user-select:none}
+    td{border:2px solid #fff;padding:8px;text-align:center;user-select:none}    
+    h1{background:#222;border-radius:5px;padding:6px 8px;text-align:center;font-weight:bold;border:2px solid #fff}
+    .Fecha{background:#222;border-radius:5px;padding:6px 8px;text-align:center;font-weight:bold;border:2px solid #fff}
+    .btn-agregar{padding:8px;background:green;color:#fff;width:50%;font-weight:bold;font-size:16px;border-radius:5px;border:2px solid #fff}
+    .btn-cerrar{padding:8px;background:red;color:#fff;width:50%;font-weight:bold;font-size:16px;border-radius:5px;border:2px solid #fff}
+    .btn-agregarViaje{padding:8px;background:green;color:#fff;width:100%;font-weight:bold;font-size:16px;border-radius:5px;border:2px solid #fff}
+    .btn-finalizarmes{padding:8px;background:red;color:#fff;width:50%;font-weight:bold;font-size:16px;border-radius:5px;border:2px solid #fff}
+    .btn-verRegistros{padding:8px;background:#007bff;color:#fff;width:50%;font-weight:bold;font-size:16px;border-radius:5px;border:2px solid #fff}
     .producto-Premium{background:red;color:#fff;font-weight:bold}
     .producto-Magna{background:green;color:#fff;font-weight:bold}
     .producto-Diesel{background:#000;color:#fff;font-weight:bold}
-
     .turno-noche{background:#fff8b3;color:#000;font-weight:bold}
-    .turno-dia{background:#060839;color:#fff;font-weight:bold}
-    
-    .total-viajes{background:#222;color:#fff;font-weight:bold;padding:2px 4px;text-align:center;border-radius:5px;border:2px solid #fff;}
-
-    .producto-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px;}    
-    .resumen-Premium{background:red;border-radius:4px;padding:2px 4px;text-align:center;font-weight:bold;border:2px solid #fff}
-    .resumen-Magna{background:green;border-radius:4px;padding:2px 4px;text-align:center;font-weight:bold;border:2px solid #fff}
-    .resumen-Diesel{background:#000;border-radius:4px;padding:2px 4px;text-align:center;font-weight:bold;border:2px solid #fff}
-
-    .unidad-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px;}
-    .fzc2460,.fzv1452,.fzv1449{background:#222;color:#fff;font-weight:bold;padding:4px 8px;text-align:center;border-radius:5px;border:2px solid #fff;}
-
-    .destino-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:10px}
-    .destino-box {background:#222;border-radius:5px;padding:6px 8px;text-align:center;font-weight:bold;border:2px solid #fff}
-
+    .turno-dia{background:#060839;color:#fff;font-weight:bold}    
+    .total-grid{display:grid;grid-template-columns:1fr;gap:5px;margin-top:5px;}    
+    .total-viajes{background:#222;border-radius:5px;padding:8px;text-align:center;font-weight:bold;border:2px solid #fff}
+    .producto-grid{display:grid;grid-template-columns:repeat(3,1fr);box-sizing:box-border}    
+    .resumen-Premium{background:red;border-radius:4px;padding:8px;text-align:center;font-weight:bold;border:2px solid #fff}
+    .resumen-Magna{background:green;border-radius:4px;padding:8px;text-align:center;font-weight:bold;border:2px solid #fff}
+    .resumen-Diesel{background:none;border-radius:4px;padding:8px;text-align:center;font-weight:bold;border:2px solid #fff}
+    .unidad-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:5px;}
+    .fzc2460,.fzv1452,.fzv1449{background:#222;color:#fff;font-weight:bold;padding:8px;text-align:center;border-radius:5px;border:2px solid #fff;}
+    .destino-grid {display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));box-sizing:box-border}
+    .destino-box {background:#222;border-radius:5px;padding:8px;text-align:center;font-weight:bold;border:2px solid #fff}
     #dropOptions{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#111;padding:15px;border-radius:10px;border:2px solid #fff;box-shadow:0 4px 15px rgba(0,0,0,.4);z-index:2000;text-align:center;}
     #dropOptions button{margin:8px;padding:10px 20px;background:#007bff;border:2px solid #fff;border-radius:6px;font-weight:bold;cursor:pointer;color:#fff;}
-    #dropOptions button:hover{background:#0056b3;}
-  
+    #dropOptions button:hover{background:#0056b3;}  
     #modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);justify-content:center;align-items:center;z-index:1000}
-    #modal-content{background:#000;padding:20px;border-radius:10px;width:90%;max-width:400px;box-shadow:0 4px 15px rgba(0,0,0,.2)}
+    #modal-content{background:#222;padding:20px;border-radius:10px;border:2px solid #fff;width:90%;max-width:400px;box-shadow:0 4px 15px rgba(0,0,0,.2)}
     #modal-content input,
-    #modal-content select {background:#111;color:#fff;border:2px solid #fff;border-radius:5px;padding:6px;}
+    #modal-content select {background:#000;color:#fff;border:2px solid #fff;border-radius:5px;padding:6px;}
     #modal-content input:focus,
-    #modal-content select:focus{outline:none;border-color:#007bff;background:#222;}
-
-  </style>
+    #modal-content select:focus{outline:none;border-color:#007bff;background:#000;}
+   </style>
 </head>
 <body>
-  <h1>Registro de Viajes</h1>
-  <p>Fecha actual: <span id="fechaActual"></span></p>
-
-  <!-- Botones principales -->
-  <div>
-    <button class="btn-principal" onclick="abrirModal()">Agregar Viaje</button>
-    <button class="btn-finalizarmes" onclick="finalizarMes()">Finalizar Mes Actual</button>
-    <button onclick="mostrarArchivados()">Ver Registros Anteriores</button>
+  <h1>Viajes</h1>
+  <p><span class="Fecha">Fecha: <span id="fechaActual"></span></span></p>
+  <div>    
+    <button class="btn-agregarViaje" onclick="abrirModal()">Agregar Viaje</button>
+    <button class="btn-finalizarmes" onclick="finalizarMes()">Finalizar Mes</button><button class="btn-verRegistros" onclick="mostrarArchivados()">Ver Registros</button>
   </div>
-
-  <!-- Resumen -->
-  <p><span class="total-viajes"> Total de viajes: <span id="totalViajes">0</span></span></p>
-  <div class="producto-grid">
-  <div class="resumen-Premium">Premium: <span id="totalPremium">0</span></div>
-  <div class="resumen-Magna">Magna: <span id="totalMagna">0</span></div>
-  <div class="resumen-Diesel">Diesel: <span id="totalDiesel">0</span></div>
-</div>
+  <div class="total-grid">
+    <div class="total-viajes">Total de viajes: <span id="totalViajes">0</span></div>
+    <div class="producto-grid">
+    <div class="resumen-Premium">Premium: <span id="totalPremium">0</span></div>
+    <div class="resumen-Magna">Magna: <span id="totalMagna">0</span></div>
+    <div class="resumen-Diesel">Diesel: <span id="totalDiesel">0</span></div>
+  </div>
   <div class="unidad-grid">
     <div class="fzc2460">FZC 2460: <span id="fzc2460">0</span></div>
     <div class="fzv1449">FZV 1449: <span id="fzv1449">0</span></div>
     <div class="fzv1452">FZV 1452: <span id="fzv1452">0</span></div>
   </div>
-
-  <!-- Resumen por destino -->
   <div class="destino-grid">
     <div class="destino-box">Velam: <span id="velam">0</span></div>
     <div class="destino-box">San Juan: <span id="sanjuan">0</span></div>
@@ -84,93 +72,82 @@
     <div class="destino-box">Bajos: <span id="bajos">0</span></div>
     <div class="destino-box">SLA: <span id="sla">0</span></div>
   </div>
-
   <div id="archivos" style="display:none"></div>
-
-  <!-- Menú flotante -->
   <div id="dropOptions">
     <p>Opciones</p>
-    <button onclick="confirmEdit()">✏️ Editar</button>
-    <button onclick="confirmDelete()">🗑️ Borrar</button>
-    <button onclick="cancelDrop()">❌ Cancelar</button>
+    <button onclick="confirmEdit()">Editar ✏️ </button>
+    <button onclick="confirmDelete()">Borrar 🗑️</button>
+    <button onclick="cancelDrop()">Cancelar ❌ </button>
   </div>
-
-  <!-- Tabla principal -->
   <table id="tablaViajes">
     <thead>
       <tr>
-        <th>Día</th><th>Mes</th><th>Destino</th><th>Producto</th><th>Unidad</th>
+        <th>Día</th><th>Mes</th><th>Destino</th>
+        <th>Producto</th><th>Unidad</th>
       </tr>
     </thead>
     <tbody></tbody>
   </table>
-
-  <!-- Modal -->
   <div id="modal">
     <div id="modal-content">
       <div class="formulario">
         <label for="fecha">Fecha:</label>
         <input type="date" id="fecha">
-        <label for="destino">Destino:</label>
-        <select id="destino">
-          <option>Velam</option><option>San Juan de los Llanos</option>
-          <option>Noyowee</option><option>Estación 0324</option>
-          <option>Bajos del Ejido</option><option>San Luis Acatlán</option>
+        <select id="destino" required="">
+          <option value=""disabled selected hidden>Destino</option>
+          <option>Velam</option>
+          <option>San Juan</option>
+          <option>Noyowee</option>
+          <option>Estación 0324</option>
+          <option>Bajos del Ejido</option>
+          <option>San Luis</option>
         </select>
-        <label>Producto:</label>
-        <select id="producto">
-          <option>Premium</option><option>Magna</option><option>Diesel</option>
+        <select id="producto" required>
+          <option value="" disabled selected hidden>Producto</option>
+          <option>Premium</option>
+          <option>Magna</option>
+          <option>Diesel</option>
         </select>
-        <label>Turno:</label>
-        <select id="turno">
-          <option>Turno 1</option><option>Turno 2</option>
+        <select id="turno" required>
+          <option value="" disabled selected hidden>Turno</option>
+          <option>Turno 1</option>
+          <option>Turno 2</option>
         </select>
-        <label>Unidad:</label>
-        <select id="unidad">
-          <option>fzc2460</option><option>fzv1449</option><option>fzv1452</option>
+        <select id="unidad" required>
+          <option value="" disabled selected hidden>Unidad</option>
+          <option>fzc2460</option>
+          <option>fzv1449</option>
+          <option>fzv1452</option>
         </select>
-        <button id="btnAgregar" onclick="agregarViaje()">Agregar Viaje</button>
-        <button onclick="cerrarModal()">Cerrar</button>
+        <button class="btn-agregar" onclick="agregarViaje()">Agregar Viaje</button><button class="btn-cerrar" onclick="cerrarModal()">Cerrar</button>
         <button id="btnCancelar" onclick="cancelarEdicion()" style="display:none">Cancelar</button>
       </div>
     </div>
   </div>
-
-  <!-- Scripts -->
   <script>
-  let editandoIndex=-1;
-  let viajes=JSON.parse(localStorage.getItem("viajesActivos"))||[];
-  const archivados=JSON.parse(localStorage.getItem("viajesArchivados"))||{};
-  let claveActual=null;
-  let longPressTimer=null;
-  let selectedIndex=null;
-
-  const ok=v=>v&&typeof v==="object"&&v.producto&&v.destino&&v.unidad&&v.mes!=null&&v.dia!=null&&v.anio!=null;
-
-  function guardar(){localStorage.setItem("viajesActivos",JSON.stringify(viajes));localStorage.setItem("viajesArchivados",JSON.stringify(archivados));}
-  function limpiar(){document.getElementById("fecha").value="";document.getElementById("destino").selectedIndex=0;document.getElementById("producto").selectedIndex=0;document.getElementById("turno").selectedIndex=0;document.getElementById("unidad").selectedIndex=0;}
-
-  function renderTabla(lista=viajes){
+    let editandoIndex=-1;
+    let viajes=JSON.parse(localStorage.getItem("viajesActivos"))||[];
+    const archivados=JSON.parse(localStorage.getItem("viajesArchivados"))||{};
+    let claveActual=null;
+    let longPressTimer=null;
+    let selectedIndex=null;
+    const ok=v=>v&&typeof v==="object"&&v.producto&&v.destino&&v.unidad&&v.mes!=null&&v.dia!=null&&v.anio!=null;
+    function guardar(){localStorage.setItem("viajesActivos",JSON.stringify(viajes));localStorage.setItem("viajesArchivados",JSON.stringify(archivados));}
+    function limpiar(){document.getElementById("fecha").value="";document.getElementById("destino").selectedIndex=0;document.getElementById("producto").selectedIndex=0;document.getElementById("turno").selectedIndex=0;document.getElementById("unidad").selectedIndex=0;}
+    function renderTabla(lista=viajes){
     const tbody=document.querySelector("#tablaViajes tbody");
-    tbody.innerHTML="";
-    lista.filter(ok).forEach((v,i)=>{
-      const claseProducto=v.producto==="Premium"?"producto-Premium":v.producto==="Magna"?"producto-Magna":"producto-Diesel";
-      const claseTurno=v.turno==="Turno 1"?"turno-dia":"turno-noche";
-      tbody.innerHTML+=`
-        <tr class="${claseTurno}" 
-            onmousedown="startPress(${i})" 
-            onmouseup="clearPress()" 
-            ontouchstart="startPress(${i})" 
-            ontouchend="clearPress()">
-          <td>${v.dia}</td>
-          <td>${v.mes}</td>
-          <td>${v.destino}</td>
-          <td class="${claseProducto}">${v.producto}</td>
-          <td>${v.unidad}</td>
-        </tr>`;
-    });
-  }
-
+          tbody.innerHTML="";
+          lista.filter(ok).forEach((v,i)=>{
+    const claseProducto=v.producto==="Premium"?"producto-Premium":v.producto==="Magna"?"producto-Magna":"producto-Diesel";
+    const claseTurno=v.turno==="Turno 1"?"turno-dia":"turno-noche";
+          tbody.innerHTML+=
+           `<tr class="${claseTurno}"onmousedown="startPress(${i})"onmouseup="clearPress()"ontouchstart="startPress(${i})"ontouchend="clearPress()">
+             <td>${v.dia}</td>
+             <td>${v.mes}</td>
+             <td>${v.destino}</td>
+             <td class="${claseProducto}">${v.producto}</td>
+             <td>${v.unidad}</td>
+           </tr>`;});}
   function resumen(){
     const lista=(claveActual?archivados[claveActual]:viajes).filter(ok);
     const r={total:lista.length,productos:{Premium:0,Magna:0,Diesel:0},destinos:{"Velam":0,"San Juan de los Llanos":0,"Noyowee":0,"Estación 0324":0,"Bajos del Ejido":0,"San Luis Acatlán":0},unidad:{fzc2460:0,fzv1452:0,fzv1449:0}};
@@ -187,50 +164,38 @@
     document.getElementById("sla").textContent=r.destinos["San Luis Acatlán"];
     document.getElementById("fzv1452").textContent=r.unidad.fzv1452;
     document.getElementById("fzv1449").textContent=r.unidad.fzv1449;
-    document.getElementById("fzc2460").textContent=r.unidad.fzc2460;
-  }
-
-  window.agregarViaje=function(){
-    const f=document.getElementById("fecha").value;if(!f)return alert("Completa todos los campos.");
+    document.getElementById("fzc2460").textContent=r.unidad.fzc2460;}
+    window.agregarViaje=function(){
+    const f=document.getElementById("fecha").value;
+    const Destino=document.getElementById("destino").value;
+    const Producto=document.getElementById("producto").value;
+    const Turno=document.getElementById("turno").value;
+    const Unidad=document.getElementById("unidad").value;
+    if(!f || !Destino||!Producto||!Turno||!Unidad)return alert("Completa todos los campos.");
     const[a,m,d]=f.split("-");const meses=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
     const v={dia:parseInt(d),mes:meses[parseInt(m)-1],anio:parseInt(a),destino:document.getElementById("destino").value,producto:document.getElementById("producto").value,turno:document.getElementById("turno").value,unidad:document.getElementById("unidad").value};
     if(editandoIndex>=0){if(claveActual)archivados[claveActual][editandoIndex]=v;else viajes[editandoIndex]=v;editandoIndex=-1;document.getElementById("btnAgregar").textContent="Agregar Viaje";document.getElementById("btnCancelar").style.display="none";}
     else{if(claveActual)archivados[claveActual].push(v);else viajes.push(v);}
-    guardar();limpiar();resumen();if(claveActual)renderTabla(archivados[claveActual]);else renderTabla(viajes);cerrarModal();
-  }
-
-  window.editarViaje=function(i){
+    guardar();limpiar();resumen();if(claveActual)renderTabla(archivados[claveActual]);else renderTabla(viajes);cerrarModal();}
+    window.editarViaje=function(i){
     const lista=(claveActual?archivados[claveActual]:viajes).filter(ok);
     const v=lista[i];const meses=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];const m=meses.indexOf(v.mes);
     document.getElementById("fecha").value=`${v.anio}-${(m+1).toString().padStart(2,"0")}-${v.dia.toString().padStart(2,"0")}`;
     document.getElementById("destino").value=v.destino;document.getElementById("producto").value=v.producto;document.getElementById("turno").value=v.turno;document.getElementById("unidad").value=v.unidad;
-    editandoIndex=i;document.getElementById("btnAgregar").textContent="Guardar Cambios";document.getElementById("btnCancelar").style.display="block";abrirModal();
-  }
-
-  window.cancelarEdicion=function(){editandoIndex=-1;limpiar();document.getElementById("btnAgregar").textContent="Agregar Viaje";document.getElementById("btnCancelar").style.display="none";cerrarModal();}
-  window.borrarViaje=function(i){const lista=claveActual?archivados[claveActual]:viajes;lista.splice(i,1);guardar();resumen();if(claveActual)renderTabla(archivados[claveActual]);else renderTabla(viajes);}
-  window.finalizarMes=function(){if(viajes.length===0)return alert("No hay viajes que archivar.");const f=new Date();const meses=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];const c=`${f.getFullYear()}-${meses[f.getMonth()]}`;archivados[c]=viajes.slice();viajes.length=0;guardar();resumen();renderTabla();alert(`Viajes archivados bajo "${c}"`);}
-
-  window.mostrarArchivados=function(){const cont=document.getElementById("archivos");if(cont.style.display==="block"){cont.style.display="none";cont.innerHTML="";return;}cont.style.display="block";cont.innerHTML="<h3>Registros Archivados:</h3>";Object.keys(archivados).sort().reverse().forEach(k=>{const b=document.createElement("button");b.textContent=k;b.onclick=()=>{claveActual=k;editandoIndex=-1;limpiar();resumen();renderTabla(archivados[k]);};cont.appendChild(b);});}
-
-  window.abrirModal=function(){document.getElementById("modal").style.display="flex";}
-  window.cerrarModal=function(){document.getElementById("modal").style.display="none";}
-
-  // Long press
-  function startPress(i){
-    clearPress();
-    longPressTimer=setTimeout(()=>{selectedIndex=i;document.getElementById("dropOptions").style.display="block";},600);
-  }
+    editandoIndex=i;document.getElementById("btnAgregar").textContent="Guardar Cambios";document.getElementById("btnCancelar").style.display="block";abrirModal();}
+    window.cancelarEdicion=function(){editandoIndex=-1;limpiar();document.getElementById("btnAgregar").textContent="Agregar Viaje";document.getElementById("btnCancelar").style.display="none";cerrarModal();}
+    window.borrarViaje=function(i){const lista=claveActual?archivados[claveActual]:viajes;lista.splice(i,1);guardar();resumen();if(claveActual)renderTabla(archivados[claveActual]);else renderTabla(viajes);}
+    window.finalizarMes=function(){if(viajes.length===0)return alert("No hay viajes que archivar.");const f=new Date();const meses=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];const c=`${f.getFullYear()}-${meses[f.getMonth()]}`;archivados[c]=viajes.slice();viajes.length=0;guardar();resumen();renderTabla();alert(`Viajes archivados bajo "${c}"`);}
+    window.mostrarArchivados=function(){const cont=document.getElementById("archivos");if(cont.style.display==="block"){cont.style.display="none";cont.innerHTML="";return;}cont.style.display="block";cont.innerHTML="<h3>Registros Archivados:</h3>";Object.keys(archivados).sort().reverse().forEach(k=>{const b=document.createElement("button");b.textContent=k;b.onclick=()=>{claveActual=k;editandoIndex=-1;limpiar();resumen();renderTabla(archivados[k]);};cont.appendChild(b);});}
+    window.abrirModal=function(){document.getElementById("modal").style.display="flex";}
+    window.cerrarModal=function(){document.getElementById("modal").style.display="none";}
+  function startPress(i){clearPress();longPressTimer=setTimeout(()=>{selectedIndex=i;document.getElementById("dropOptions").style.display="block";},600);}
   function clearPress(){if(longPressTimer){clearTimeout(longPressTimer);longPressTimer=null;}}
-
-  // Botones de acción
-  window.confirmEdit=function(){editarViaje(selectedIndex);document.getElementById("dropOptions").style.display="none";selectedIndex=null;}
-  window.confirmDelete=function(){borrarViaje(selectedIndex);document.getElementById("dropOptions").style.display="none";selectedIndex=null;}
-  window.cancelDrop=function(){document.getElementById("dropOptions").style.display="none";selectedIndex=null;}
-
-  // Inicio
-  document.getElementById("fechaActual").textContent=new Date().toLocaleDateString("es-MX");
-  resumen();renderTabla();
+    window.confirmEdit=function(){editarViaje(selectedIndex);document.getElementById("dropOptions").style.display="none";selectedIndex=null;}
+    window.confirmDelete=function(){borrarViaje(selectedIndex);document.getElementById("dropOptions").style.display="none";selectedIndex=null;}
+    window.cancelDrop=function(){document.getElementById("dropOptions").style.display="none";selectedIndex=null;}
+    document.getElementById("fechaActual").textContent=new Date().toLocaleDateString("es-MX");
+    resumen();renderTabla();
   </script>
 </body>
 </html>
