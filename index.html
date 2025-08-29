@@ -44,9 +44,9 @@
     #modal-content select {background:#000;color:#fff;border:2px solid #fff;border-radius:5px;padding:6px;}
     #modal-content input:focus,
     #modal-content select:focus{outline:none;border-color:#007bff;background:#000;}
-    #dropOptions{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#111;padding:15px;border-radius:10px;border:2px solid #fff;box-shadow:0 4px 15px rgba(0,0,0,.4);z-index:2000;text-align:center;}
-    #dropOptions button{margin:8px;padding:10px 20px;background:#007bff;border:2px solid #fff;border-radius:6px;font-weight:bold;cursor:pointer;color:#fff;}
-    #dropOptions button:hover{background:#0056b3;}
+    #editOptions{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#111;padding:15px;border-radius:10px;border:2px solid #fff;box-shadow:0 4px 15px rgba(0,0,0,.4);z-index:2000;text-align:center;}
+    #editOptions button{margin:8px;padding:10px 20px;background:#007bff;border:2px solid #fff;border-radius:6px;font-weight:bold;cursor:pointer;color:#fff;}
+    #editOptions button:hover{background:#0056b3;}
   </style>
 </head>
 <body>
@@ -85,11 +85,11 @@
   </div>
   </div>
   <div id="archivos" style="display:none"></div>
-  <div id="dropOptions">
+  <div id="editOptions">
     <p>Opciones</p>
     <button onclick="confirmEdit()">Editar ✏️ </button>
     <button onclick="confirmDelete()">Borrar 🗑️</button>
-    <button onclick="cancelDrop()">Cancelar ❌ </button>
+    <button onclick="cancelEdit()">Cancelar ❌ </button>
   </div>
   <table id="tablaViajes">
     <thead>
@@ -131,7 +131,7 @@
           <option>fzv1449</option>
           <option>fzv1452</option>
         </select>
-        <button class="btn-cerrar" onclick="cerrarModal()">Cerrar</button><button id="btnAgregar" class="boton-Agregarviaje" onclick="agregarViaje()">Agregar Viaje</button>
+        <button id="btnAgregar" class="boton-Agregarviaje" onclick="agregarViaje()">Agregar Viaje</button><button id="btnCancelar" class="btn-cerrar" onclick="cancelarEdicion()">Cancelar</button>
        </div>
     </div>
   </div>
@@ -193,6 +193,7 @@
         else viajes[editandoIndex]=v;
         editandoIndex=-1;
         document.getElementById("btnAgregar").textContent="Agregar Viaje";
+        document.getElementById("btnCancelar").textContent="Cerrar";
       } else {
         if(claveActual) archivados[claveActual].push(v);
         else viajes.push(v);
@@ -221,7 +222,7 @@
       document.getElementById("unidad").value=v.unidad;
       editandoIndex=i;
       document.getElementById("btnAgregar").textContent="Guardar Cambios";
-      ;
+      document.getElementById("btnCancelar").textContent="Cancelar";
       abrirModal();
     }
     window.borrarViaje=function(i){
@@ -240,6 +241,13 @@
       guardar();resumen();renderTabla();
       alert(`Viajes archivados bajo "${c}"`);
     }
+    window.cancelarEdicion=function(){
+      editandoIndex=-1;
+      limpiar();
+      document.getElementById("btnAgregar").textContent="Agregar Viaje";
+      document.getElementById("btnCancelar").textContent="Cerrar";
+      cerrarModal();
+    }
     window.mostrarArchivados=function(){
       const cont=document.getElementById("archivos");
       if(cont.style.display==="block"){cont.style.display="none";cont.innerHTML="";return;}
@@ -248,11 +256,11 @@
         const b=document.createElement("button");b.textContent=k;b.onclick=()=>{claveActual=k;editandoIndex=-1;limpiar();resumen();renderTabla(archivados[k]);};cont.appendChild(b);});}
     window.abrirModal=function(){document.getElementById("modal").style.display="flex";}
     window.cerrarModal=function(){document.getElementById("modal").style.display="none";}
-  function startPress(i){clearPress();longPressTimer=setTimeout(()=>{selectedIndex=i;document.getElementById("dropOptions").style.display="block";},600);}
+  function startPress(i){clearPress();longPressTimer=setTimeout(()=>{selectedIndex=i;document.getElementById("editOptions").style.display="block";},600);}
   function clearPress(){if(longPressTimer){clearTimeout(longPressTimer);longPressTimer=null;}}
-    window.confirmEdit=function(){editarViaje(selectedIndex);document.getElementById("dropOptions").style.display="none";selectedIndex=null;}
-    window.confirmDelete=function(){borrarViaje(selectedIndex);document.getElementById("dropOptions").style.display="none";selectedIndex=null;}
-    window.cancelDrop=function(){document.getElementById("dropOptions").style.display="none";selectedIndex=null;}
+    window.confirmEdit=function(){editarViaje(selectedIndex);document.getElementById("editOptions").style.display="none";selectedIndex=null;}
+    window.confirmDelete=function(){borrarViaje(selectedIndex);document.getElementById("editOptions").style.display="none";selectedIndex=null;}
+    window.cancelEdit=function(){document.getElementById("editOptions").style.display="none";selectedIndex=null;}
     document.getElementById("fechaActual").textContent=new Date().toLocaleDateString("es-MX");
     resumen();renderTabla();
   if ("serviceWorker" in navigator) {
