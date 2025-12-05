@@ -145,6 +145,16 @@
     const ok=v=>v&&typeof v==="object"&&v.producto&&v.destino&&v.unidad&&v.mes!=null&&v.dia!=null&&v.anio!=null;
     function guardar(){localStorage.setItem("viajesActivos",JSON.stringify(viajes));localStorage.setItem("viajesArchivados",JSON.stringify(archivados));}
     function limpiar(){document.getElementById("fecha").value="";document.getElementById("destino").selectedIndex=0;document.getElementById("producto").selectedIndex=0;document.getElementById("turno").selectedIndex=0;document.getElementById("unidad").selectedIndex=0;}
+function ordenarViajes(lista) {
+  const meses = ["Enero","Febrero","Marzo","Abril","Mayo","Junio",
+                 "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+  return lista.sort((a,b)=>{
+    if(a.anio!==b.anio) return a.anio - b.anio;
+    if(meses.indexOf(a.mes)!==meses.indexOf(b.mes))
+      return meses.indexOf(a.mes) - meses.indexOf(b.mes);
+    return a.dia - b.dia;
+  });
+}
     function renderTabla(lista=viajes){
       const tbody=document.querySelector("#tablaViajes tbody");
       tbody.innerHTML="";
@@ -163,7 +173,7 @@
     }
     function resumen(){
       const lista=(claveActual?archivados[claveActual]:viajes).filter(ok);
-      const r={total:lista.length,productos:{Premium:0,Magna:0,Diesel:0},destinos:{"Velam":0,"San Juan":0,"Noyowee":0,"0324":0,"Bajos del Ejido":0,"San Luis Acatlán":0},unidad:{fzc2460:0,fzv1452:0,fzv1449:0}};
+      const r={total:lista.length,productos:{Premium:0,Magna:0,Diesel:0},destinos:{"Velam":0,"San Juan":0,"Noyowee":0,"0324":0,"Bajos del Ejido":0,"San Luis":0},unidad:{fzc2460:0,fzv1452:0,fzv1449:0}};
       lista.forEach(v=>{r.productos[v.producto]++;r.destinos[v.destino]++;r.unidad[v.unidad]++;});
       document.getElementById("totalViajes").textContent=r.total;
       document.getElementById("totalPremium").textContent=r.productos.Premium;
@@ -174,7 +184,7 @@
       document.getElementById("noyo").textContent=r.destinos["Noyowee"];
       document.getElementById("e0324").textContent=r.destinos["0324"];
       document.getElementById("bajos").textContent=r.destinos["Bajos del Ejido"];
-      document.getElementById("sla").textContent=r.destinos["San Luis Acatlán"];
+      document.getElementById("sla").textContent=r.destinos["San Luis"];
       document.getElementById("fzv1452").textContent=r.unidad.fzv1452;
       document.getElementById("fzv1449").textContent=r.unidad.fzv1449;
       document.getElementById("fzc2460").textContent=r.unidad.fzc2460;}
@@ -198,6 +208,8 @@
         if(claveActual) archivados[claveActual].push(v);
         else viajes.push(v);
       }
+        if(claveActual) archivados[claveActual] = ordenarViajes(archivados[claveActual]);
+else viajes = ordenarViajes(viajes);
       guardar();limpiar();resumen();
       if(claveActual) renderTabla(archivados[claveActual]);
       else renderTabla(viajes);
