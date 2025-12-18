@@ -9,7 +9,6 @@ h1{background:#222;border-radius:5px;padding:8px;text-align:center;font-weight:b
 
 .btn-agregarViaje{padding:8px;background:green;color:#fff;width:100%;font-weight:bold;font-size:16px;border-radius:5px;border:3px solid #fff}
 .btn-finalizarmes{padding:8px;background:red;color:#fff;width:50%;font-weight:bold;font-size:16px;border-radius:5px;border:3px solid #fff}
-.btn-verRegistros{padding:8px;background:#007bff;color:#fff;width:50%;font-weight:bold;font-size:16px;border-radius:5px;border:3px solid #fff}
 .btn-verResumen{padding:8px;background:#007bff;color:#fff;width:50%;font-weight:bold;font-size:16px;border-radius:5px;border:3px solid #fff}
 .boton-Agregarviaje{padding:8px;background:green;color:#fff;width:50%;font-weight:bold;font-size:16px;border-radius:5px;border:3px solid #fff}
 .btn-cerrar{padding:8px;background:red;color:#fff;width:50%;font-weight:bold;font-size:16px;border-radius:5px;border:2px solid #fff}
@@ -48,4 +47,3 @@ h1{background:#222;border-radius:5px;padding:8px;text-align:center;font-weight:b
 #editOptions{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#111;padding:15px;border-radius:10px;border:2px solid #fff;box-shadow:0 4px 15px rgba(0,0,0,.4);z-index:2000;text-align:center;}
 #editOptions button{margin:8px;padding:10px 20px;background:#007bff;border:2px solid #fff;border-radius:6px;font-weight:bold;cursor:pointer;color:#fff;}
 #editOptions button:hover{background:#0056b3;}
-
