@@ -6,7 +6,7 @@
   <title>Mis viajes</title>
 
   <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#007bff">
+  <meta name="theme-color" content="#007bff">
 
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -27,25 +27,26 @@
       <div class="total-grid">
         <div class="total-viajes">Total de viajes: <span id="totalViajes">0</span></div>
       </div>          
-        <button id="btnOpenHistorial" style="background-color: #6c757d; margin: 10px 0; padding: 8px; width: 100%; font-weight: bold; border-radius: 5px; border: 2px solid #fff; color: #fff;">Ver Historial</button>
-        <div class="producto-grid">
+      <button id="btnOpenHistorial" style="background-color: #6c757d; margin: 10px 0; padding: 8px; width: 100%; font-weight: bold; border-radius: 5px; border: 2px solid #fff; color: #fff;">Ver Historial</button>
+      
+      <div class="producto-grid">
         <div class="resumen-Premium">Premium: <span id="totalPremium">0</span></div>
         <div class="resumen-Magna">Magna: <span id="totalMagna">0</span></div>
         <div class="resumen-Diesel">Diesel: <span id="totalDiesel">0</span></div>
       </div>
       
-        <div class="operador-grid">
+      <div class="operador-grid">
         <div class="Damian">Damian: <span id="Damian">0</span></div>
         <div class="Cosme">Cosme: <span id="Cosme">0</span></div>
-        </div>
+      </div>
 
       <div class="destino-grid">
         <div class="destino-box">Velam: <span id="velam">0</span></div>
         <div class="destino-box">San Juan: <span id="sanjuan">0</span></div>
         <div class="destino-box">Noyowee: <span id="noyo">0</span></div>
         <div class="destino-box">0324: <span id="e0324">0</span></div>
-        <div class="destino-box">Bajos: <span id="bajos">0</span></div>
-        <div class="destino-box">FLETES: <span id="flete">0</span></div>
+        <div class="destino-box">Bajos del Ejido: <span id="bajos">0</span></div>
+        <div class="destino-box">Fletes: <span id="flete">0</span></div>
       </div>
 
       <button class="btn-cerrar" id="btnCloseResumen">Cerrar</button>
@@ -63,7 +64,7 @@
     <button id="optCancel">Cancelar ❌</button>
   </div>
 
-  <!-- Tabla -->
+  <!-- Tabla Principal -->
   <table id="tablaViajes">
     <thead>
       <tr>
@@ -114,7 +115,9 @@
       </div>
     </div>
   </div>
-    <div id="pantalla-historial" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,.5); justify-content: center; align-items: center; z-index: 1200;">
+
+  <!-- Modal Historial de Meses -->
+  <div id="pantalla-historial" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,.5); justify-content: center; align-items: center; z-index: 1200;">
     <div id="modal-resumen-content">
       <h2>Historial de Meses</h2>
       
@@ -123,7 +126,6 @@
       <button class="btn-cerrar" id="btnCerrarHistorial" style="width: 100%; margin-top: 15px;">Volver al Resumen</button>
     </div>
   </div>
-
 
   <script src="app.js"></script>
 </body>
