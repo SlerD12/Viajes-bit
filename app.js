@@ -73,8 +73,8 @@ const sorters = {
   byDate(list) {
     return list.sort((a, b) => {
       if (a.anio !== b.anio) return a.anio - b.anio;
-      const am = MONTHS.indexOf(v => v.toLowerCase().startsWith(a.mes.substring(0, 3).toLowerCase()));
-      const bm = MONTHS.indexOf(v => v.toLowerCase().startsWith(b.mes.substring(0, 3).toLowerCase()));
+      const am = MONTHS.findIndex(v => v.toLowerCase().startsWith(a.mes.substring(0, 3).toLowerCase()));
+      const bm = MONTHS.findIndex(v => v.toLowerCase().startsWith(b.mes.substring(0, 3).toLowerCase()));
       const aIdx = am !== -1 ? am : MONTHS.indexOf(a.mes);
       const bIdx = bm !== -1 ? bm : MONTHS.indexOf(b.mes);
       return aIdx !== bIdx ? aIdx - bIdx : a.dia - b.dia;
